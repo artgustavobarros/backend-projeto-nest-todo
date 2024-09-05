@@ -1,0 +1,13 @@
+services:
+    mysqldb:
+        image: mysql:8.0
+        container_name: todosimple-mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=todosimple-mysql
+            - MYSQL_DATABASE=todosimple-mysql
+        ports:
+            - 3306:3306
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            timeout: 5s
+            retries: 10
