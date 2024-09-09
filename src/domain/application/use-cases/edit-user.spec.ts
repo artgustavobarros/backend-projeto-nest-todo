@@ -14,40 +14,13 @@ describe('Edit User Use Case', () => {
     sut = new EditUserUseCase(usersRepository, hasher)
   })
 
-  it('should be possible to edit the name of an existing user.', async () => {
-    const user = makeUser()
-
-    usersRepository.create(user)
-
-    await sut.execute({ id: user.id.toString(), newName: 'updated_name' })
-
-    expect(usersRepository.items[0]).toMatchObject({
-      name: 'updated_name',
-    })
-  })
-
-  it('should be possible to edit the email of an existing user.', async () => {
-    const user = makeUser()
-
-    usersRepository.create(user)
-
-    await sut.execute({
-      id: user.id.toString(),
-      newEmail: 'updated_email@email.com',
-    })
-
-    expect(usersRepository.items[0]).toMatchObject({
-      email: 'updated_email@email.com',
-    })
-  })
-
   it('should be possible to edit the password of an existing user.', async () => {
     const user = makeUser()
 
     usersRepository.create(user)
 
     await sut.execute({
-      id: user.id.toString(),
+      email: user.email,
       newPassword: 'updated_password',
     })
 

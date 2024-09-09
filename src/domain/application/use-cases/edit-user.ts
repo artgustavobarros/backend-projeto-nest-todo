@@ -5,9 +5,7 @@ import { Injectable } from '@nestjs/common'
 import { Hasher } from '../cryptography/hasher'
 
 interface EditUserUseCaseRequest {
-  id: string
-  newEmail?: string
-  newName?: string
+  email: string
   newPassword?: string
 }
 
@@ -21,17 +19,13 @@ export class EditUserUseCase {
   ) {}
 
   async execute({
-    id,
-    newName,
-    newEmail,
+    email,
     newPassword,
   }: EditUserUseCaseRequest): Promise<EditUserUseCaseResponse> {
-    const user = await this.usersRepository.findById(id)
+    const user = await this.usersRepository.findByEmail(email)
 
     if (!user) return left(new UserNotFoundError())
 
-    user.name = newName ?? user.name
-    user.email = newEmail ?? user.email
     if (newPassword)
       user.password = (await this.hasher.hash(newPassword)) ?? user.password
 
