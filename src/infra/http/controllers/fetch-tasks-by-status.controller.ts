@@ -47,7 +47,6 @@ export class FetchTasksByStatusController {
     }
 
     const foundedTasks = result.value.tasks
-    console.log('aqui', foundedTasks)
 
     return { tasks: foundedTasks.map(TaskPresenter.toHTTP) }
   }
