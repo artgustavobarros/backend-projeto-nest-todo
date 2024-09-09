@@ -29,20 +29,6 @@ export class PrismaTasksRepository implements TasksRepository {
     })
   }
 
-  async findBySlug(slug: string): Promise<Task[] | null> {
-    const tasks = await this.prisma.task.findMany({
-      where: {
-        slug: {
-          contains: slug,
-        },
-      },
-    })
-
-    if (!tasks) return null
-
-    return tasks.map(PrismaTaskMapper.toDomain)
-  }
-
   async findById(id: string): Promise<Task | null> {
     const task = await this.prisma.task.findUnique({ where: { id } })
 
