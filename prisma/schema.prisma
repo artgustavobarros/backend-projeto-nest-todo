@@ -7,17 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Status {
-  done
-  undone
-}
-
-enum Category {
-  green
-  yellow
-  red
-}
-
 model User {
   id        String    @id @unique @default(uuid())
   name      String
@@ -38,9 +27,20 @@ model Task {
   category  Category
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
 
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
-
+  @@index([authorId], map: "tasks_authorId_fkey")
   @@map("tasks")
+}
+
+enum Status {
+  done
+  undone
+}
+
+enum Category {
+  green
+  yellow
+  red
 }

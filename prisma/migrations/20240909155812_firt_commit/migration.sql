@@ -24,6 +24,7 @@ CREATE TABLE `tasks` (
     `authorId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `tasks_id_key`(`id`),
+    INDEX `tasks_authorId_fkey`(`authorId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
