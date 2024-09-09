@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE `tasks` MODIFY `content` MEDIUMTEXT NOT NULL,
-    MODIFY `slug` MEDIUMTEXT NOT NULL;
