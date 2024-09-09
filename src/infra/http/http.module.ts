@@ -23,8 +23,6 @@ import { FetchTasksByCategoryController } from './controllers/fetch-tasks-by-cat
 import { FetchTasksByCategoryUseCase } from '@/domain/application/use-cases/fetch-tasks-by-category'
 import { FetchTasksByStatusController } from './controllers/fetch-tasks-by-status.controller'
 import { FetchTasksByStatusUseCase } from '@/domain/application/use-cases/fetch-tasks-by-status'
-import { FetchTasksBySlugController } from './controllers/fetch-tasks-by-slug.controller'
-import { FetchTaskBySlugUseCase } from '@/domain/application/use-cases/fetch-tasks-by-slug'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -40,7 +38,6 @@ import { FetchTaskBySlugUseCase } from '@/domain/application/use-cases/fetch-tas
     FindTaskByIdController,
     FetchTasksByCategoryController,
     FetchTasksByStatusController,
-    FetchTasksBySlugController,
   ],
   providers: [
     CreateTaskUseCase,
@@ -54,7 +51,6 @@ import { FetchTaskBySlugUseCase } from '@/domain/application/use-cases/fetch-tas
     FindTaskByIdUseCase,
     FetchTasksByCategoryUseCase,
     FetchTasksByStatusUseCase,
-    FetchTaskBySlugUseCase,
   ],
 })
 export class HttpModule {}

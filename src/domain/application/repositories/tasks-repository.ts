@@ -8,5 +8,4 @@ export abstract class TasksRepository {
   abstract findById(id: string): Promise<Task | null>
   abstract fetchByStatus(status: Status): Promise<Task[] | null>
   abstract fetchByCategory(category: Category): Promise<Task[] | null>
-  abstract findBySlug(slug: string): Promise<Task[] | null>
 }

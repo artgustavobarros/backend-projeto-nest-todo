@@ -7,7 +7,6 @@ export class TaskPresenter {
       authorId: task.authorId.toString(),
       title: task.title,
       content: task.content,
-      slug: task.slug.value,
       category: task.category,
       status: task.status,
       createdAt: task.createdAt,

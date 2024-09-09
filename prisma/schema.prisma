@@ -36,7 +36,6 @@ model Task {
   content   String    @db.MediumText
   status    Status
   category  Category
-  slug      String    @db.MediumText
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 

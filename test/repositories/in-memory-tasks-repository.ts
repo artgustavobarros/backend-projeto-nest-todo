@@ -30,14 +30,6 @@ export class InMemoryTasksRepository implements TasksRepository {
     return tasks
   }
 
-  async findBySlug(slug: string): Promise<Task[] | null> {
-    const tasks = this.items.filter((item) => item.slug.value.includes(slug))
-
-    if (!tasks) return null
-
-    return tasks
-  }
-
   async delete(task: Task): Promise<void> {
     const itemIndex = this.items.findIndex((item) => item.id === task.id)
 

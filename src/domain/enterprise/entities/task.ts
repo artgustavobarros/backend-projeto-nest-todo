@@ -1,4 +1,3 @@
-import { Slug } from './value-objects/slug'
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
@@ -10,7 +9,6 @@ export interface TaskProps {
   authorId: UniqueEntityId
   title: string
   content: string
-  slug: Slug
   category: Category
   status: Status
   createdAt: Date
@@ -28,10 +26,6 @@ export class Task extends Entity<TaskProps> {
 
   get authorId() {
     return this.props.authorId
-  }
-
-  get slug() {
-    return this.props.slug
   }
 
   get status() {
@@ -65,7 +59,6 @@ export class Task extends Entity<TaskProps> {
 
   set title(title: string) {
     this.props.title = title
-    this.props.slug = Slug.createFromText(title)
     this.touch()
   }
 
@@ -80,15 +73,12 @@ export class Task extends Entity<TaskProps> {
   }
 
   static create(
-    props: Optional<TaskProps, 'updatedAt' | 'slug' | 'createdAt'>,
+    props: Optional<TaskProps, 'updatedAt' | 'createdAt'>,
     id?: UniqueEntityId,
   ) {
     const task = new Task(
       {
         ...props,
-        slug:
-          props.slug ??
-          Slug.createFromText(props.title.concat('-').concat(props.content)),
         createdAt: new Date(),
       },
       id,
